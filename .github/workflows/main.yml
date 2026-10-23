@@ -1,0 +1,42 @@
+name: Build and Run C Programs
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Show repo structure
+      run: |
+        echo "Current directory:"
+        pwd
+        echo "Files:"
+        ls -R
+
+    # ✅ Compile each C file separately
+    - name: Compile each C file
+      run: |
+        mkdir -p output
+        for file in *.c; do
+          exe="output/${file%.c}"
+          echo "Compiling $file -> $exe"
+          gcc -g "$file" -o "$exe"
+        done
+
+    # ✅ Run each compiled program
+    - name: Run each compiled program
+      run: |
+        echo "Running all compiled programs:"
+        for exe in output/*; do
+          echo "---- Running $exe ----"
+          "$exe" || true
+          echo ""
+        done
