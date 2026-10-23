@@ -8,7 +8,7 @@ void printsort(int *arr, int len)
     }
     printf("\n");
 }
-void bubblesort(int *arr, int len)
+void bubblesort(int *arr, int len) 
 {
     for(int i=0; i<len; i++)
     {
