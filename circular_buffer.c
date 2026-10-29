@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <stdbool.h>
-#include <conio.h>
 
 #define RING_BUFFER_SIZE 8U
 #define RING_BUFFER_MASK (RING_BUFFER_SIZE-1U)
@@ -116,6 +115,5 @@ int main(void)
     {
         printf("Pop Failed as expected: Buffer is Empty!");
     }
-    getch();
     return 0;
 }
